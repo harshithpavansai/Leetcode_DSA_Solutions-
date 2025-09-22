@@ -1,0 +1,21 @@
+class Solution {
+    public boolean validMountainArray(int[] arr) {
+        int peak=0;
+        int n=arr.length;
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > arr[peak]) {
+                peak = i;
+            }
+        }
+        if (peak == 0 || peak == n - 1) return false;
+
+        for (int i = 1; i <= peak; i++) {
+            if (arr[i] <= arr[i - 1]) return false;
+        }
+
+        for (int i = peak + 1; i < n; i++) {
+            if (arr[i] >= arr[i - 1]) return false;
+        }
+        return true;
+    }
+}
